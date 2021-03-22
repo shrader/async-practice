@@ -23,15 +23,19 @@ let deckId;
 async function getDeckId() {
     let deckObj = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle');
     console.log(deckObj);
-    deckId = deckObj.data['deck_id'];
+    deckId = deckObj.data.deck_id;
     
 }
 
 async function getCard() {
     if (deckId) {
         let card1 = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`);
-        card1Info = card1.data["cards"][0];
-        console.log(card1Info["value"], card1Info['suit']);
+        card1Info = card1.data.cards[0];
+        console.log(card1Info.value, card1Info.suit);
+        console.log(card1.data.remaining)
+
+        $("#card-holder").html("")
+        $("#card-holder").append(`<img src='${card1Info.image}'>`)
     }
     
 

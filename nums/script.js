@@ -18,7 +18,7 @@ async function get_lucky_num_facts() {
       ]);
 
     for (let num of resp) {
-        $luckyNums.append(`<li>${num["data"]}</li>`);
+        $luckyNums.append(`<li>${num.data}</li>`);
     }
 
 }
